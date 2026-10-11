@@ -1,0 +1,10 @@
+- insert:
+    - id: code-arcade
+      name: dsh-code-arcade
+      config:
+        openOverlay: true
+        initialEnabled: false
+        port: 0
+        chooseTimeoutMs: 600000
+        disconnectMs: 8000
+        maxBufferedBytes: 8388608

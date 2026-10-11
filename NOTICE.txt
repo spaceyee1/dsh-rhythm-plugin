@@ -1,0 +1,71 @@
+Code Arcade — third-party plugin notice
+Review date: 2026-10-11
+
+This is an independent, unofficial plugin compatible with DeepSeek Harness.
+It is not endorsed or sponsored by DeepSeek or the owners of Muse Dash.
+Product names identify compatibility or design context; this package grants
+no rights to third-party trademarks, logos, games, models or hosted services.
+
+Package provenance
+- src/: implementation written for this project with AI assistance.
+- desktop/: project-specific XAML, PowerShell and embedded C# implementation.
+  UI shapes are drawn by WPF. Music and judgement sounds are generated from
+  oscillators in the embedded C# helper; no external audio samples are bundled.
+- src/core.mjs: original continuous difficulty and tap/chord/hold chart engine.
+- src/question-bank.mjs: newly authored questions and parameterized exercises
+  based on web-checked educational facts and principles. QUESTION-SOURCES.md
+  and per-question sources identify those references. No downloaded commercial
+  question bank, textbook exercise text or long literary excerpts are bundled.
+  Original wording does not claim authorship of established ideas, formulae,
+  historical documents or classic thought experiments.
+- tests/ and scripts/: project-specific test fixtures and preview launcher.
+- No image, font, audio, compiled third-party library or host distribution is
+  included in this package. Microsoft YaHei UI is requested from the system;
+  its font files are not distributed by this plugin.
+
+External components, installed separately
+- DeepSeek Harness and its service packages: host/API integration; inspected
+  upstream LICENSE is MIT, Copyright (c) 2026 DeepSeek.
+- @deepseek-ai/cordis 4.0.4: host integration framework; inspected package
+  LICENSE is MIT, Copyright (c) 2021-present Shigma.
+- Node.js, Windows PowerShell, WPF/.NET and system fonts: supplied by the user's
+  runtime/operating system, under their own terms. They are not re-licensed by
+  this package's MIT license.
+
+The original implementation is offered under the accompanying LICENSE to the
+extent the contributor can grant those rights. That file is not evidence of
+third-party permission, trademark clearance, or a determination of copyright
+ownership in AI-assisted work. If external code or assets are added or bundled
+later, preserve their applicable notices and obtain the necessary permissions.
+
+External educational references are not re-licensed under MIT
+- OpenStax and MIT OpenCourseWare content has applicable CC BY-NC-SA terms.
+  Copying/adapting protected material can require attribution, a license link,
+  change notices, non-commercial use and ShareAlike. An independent question
+  using a fact or formula is not automatically a derivative work; changing
+  names or numbers alone is not proof of independence either.
+- OpenStax distinguishes compliant non-commercial educational AI assistance
+  from model training, generative-product incorporation and large-scale
+  ingestion. Its AI FAQ does not remove the book-specific AI notice.
+- SEP and Hamburg LHN permit access but are not generally MIT/CC-licensed
+  texts. Free reading is not a blanket permission to translate or republish.
+- Yale Avalon historical source documents must be distinguished from modern
+  editorial material, translations and website presentation.
+No third-party content permission was obtained in this review. See AUDIT.md
+for the checked terms, limited phrase searches and unresolved scope questions.
+
+Reference-content policies checked
+https://help.openstax.org/s/article/Using-OpenStax-Content-with-AI-Tools
+https://openstax.org/tos
+https://ocw.mit.edu/pages/privacy-and-terms-of-use/
+https://plato.stanford.edu/info.html
+https://www-archiv.fdm.uni-hamburg.de/lhn/node/11.html
+https://www-archiv.fdm.uni-hamburg.de/lhn/node/12.html
+https://avalon.law.yale.edu/about/purpose.asp
+
+References checked
+https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/LICENSE
+https://www.deepseek.com/en/harness/terms-of-use/
+
+The compatibility references and this notice do not override applicable law
+or the terms of any model, service, operating system or host software.

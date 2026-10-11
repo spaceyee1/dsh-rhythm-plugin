@@ -1,0 +1,17 @@
+{
+  "name": "dsh-code-arcade",
+  "version": "1.0.0",
+  "repository": { "type": "git", "url": "https://github.com/spaceyee1/dsh-rhythm-plugin.git" },
+  "homepage": "https://github.com/spaceyee1/dsh-rhythm-plugin#readme",
+  "bugs": { "url": "https://github.com/spaceyee1/dsh-rhythm-plugin/issues" },
+  "description": "Code Arcade 非官方挑战插件，适配 DeepSeek Harness：透明双押长按音游、连续难度与七学科来源题库。",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22.19.0" },
+  "exports": { ".": "./src/plugin.mjs" },
+  "files": ["src", "desktop", "tests", "cordis.yml", "README.md", "DEBUG.md", "VALIDATION.md", "AUDIT.md", "QUESTION-SOURCES.md", "LICENSE", "NOTICE.txt", "scripts/demo.mjs"],
+  "scripts": { "test": "node --test tests/*.test.mjs", "demo": "node scripts/demo.mjs", "check": "node --check src/plugin.mjs && node --check src/bridge.mjs && node --check src/core.mjs && node --check src/question-bank.mjs && node --check src/desktop.mjs && node --check scripts/demo.mjs", "check:native": "powershell.exe -NoProfile -STA -File desktop/overlay.ps1 -SelfTest" },
+  "peerDependencies": { "@deepseek-ai/dsh": ">=0.2.0-rc.2 <0.3.0", "@deepseek-ai/cordis": "~4.0.4" },
+  "peerDependenciesMeta": { "@deepseek-ai/dsh": { "optional": true }, "@deepseek-ai/cordis": { "optional": true } },
+  "dsh": { "bundle": { "patch": "./cordis.yml" } }
+}

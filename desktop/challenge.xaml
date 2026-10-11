@@ -1,0 +1,110 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="杂鱼，接受挑战吧！" Width="460" SizeToContent="Height" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
+        FontFamily="Microsoft YaHei UI" Foreground="#26342D" UseLayoutRounding="True">
+  <Window.Resources>
+    <Style TargetType="Button">
+      <Setter Property="Background" Value="#F1F4F2"/>
+      <Setter Property="Foreground" Value="#26342D"/>
+      <Setter Property="BorderBrush" Value="#D3DCD6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="14,10"/>
+      <Setter Property="Margin" Value="0,0,8,8"/>
+      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="Surface" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Surface" Property="Background" Value="#E3EEE8"/></Trigger>
+              <Trigger Property="IsPressed" Value="True"><Setter TargetName="Surface" Property="Background" Value="#CCDFD3"/></Trigger>
+              <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.5"/></Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </Window.Resources>
+  <Border x:Name="DialogSurface" Padding="22,17,22,18" Background="#FFFCFDFC" BorderBrush="#C8D2CC" BorderThickness="1" CornerRadius="7">
+    <StackPanel>
+      <Grid x:Name="DialogHeader" Background="Transparent" Margin="0,0,0,21">
+        <TextBlock x:Name="DialogTitle" Text="选择挑战" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+        <Button x:Name="CloseButton" Content="×" HorizontalAlignment="Right" Padding="0" Width="26" Height="25"
+                Background="Transparent" BorderThickness="0" Margin="0" FontSize="18" ToolTip="退出挑战"/>
+      </Grid>
+      <StackPanel x:Name="ChoosePanel">
+        <TextBlock x:Name="ChoicePrompt" Text="杂鱼，接受挑战吧！" FontSize="21" FontWeight="SemiBold" Margin="0,0,0,20"/>
+        <Grid>
+          <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+          <Button x:Name="RhythmButton" Content="玩音游" Background="#D8EADF" Margin="0,0,6,0" Padding="22,13"/>
+          <Button x:Name="QuizButton" Content="做题" Grid.Column="1" Margin="6,0,0,0" Padding="22,13"/>
+        </Grid>
+        <WrapPanel x:Name="SubjectPanel" Visibility="Collapsed" Margin="0,17,0,0"/>
+      </StackPanel>
+      <StackPanel x:Name="RhythmPanel" Visibility="Collapsed">
+        <Border Background="#EAF4F8F5" Padding="8,5" CornerRadius="4" Margin="0,0,0,8" HorizontalAlignment="Left">
+          <TextBlock Text="D / J 上轨 · F / K 下轨 · 双押同时按 · 长条按住到尾" FontSize="10" Foreground="#4B6958"/>
+        </Border>
+        <Border Background="#EAF4F8F5" Padding="10,7" CornerRadius="5" Margin="0,0,0,9">
+          <Grid>
+            <TextBlock x:Name="RhythmStats" FontSize="11" Foreground="#375B4A" VerticalAlignment="Center"/>
+            <Button x:Name="SoundButton" Content="声音：开" HorizontalAlignment="Right" Padding="8,4" FontSize="10" Margin="0"/>
+          </Grid>
+        </Border>
+        <Border x:Name="ArenaFrame" Background="Transparent" BorderBrush="#308CA999" BorderThickness="1" CornerRadius="6" ClipToBounds="True">
+          <Canvas x:Name="Arena" Width="505" Height="150" Background="Transparent">
+            <Rectangle Canvas.Left="12" Canvas.Top="29" Width="481" Height="38" RadiusX="8" RadiusY="8" Fill="#17304B3E"/>
+            <Rectangle Canvas.Left="12" Canvas.Top="86" Width="481" Height="38" RadiusX="8" RadiusY="8" Fill="#17304B3E"/>
+            <Line X1="28" X2="485" Y1="48" Y2="48" Stroke="#80A7C7B4" StrokeThickness="2"/>
+            <Line X1="28" X2="485" Y1="105" Y2="105" Stroke="#80A7C7B4" StrokeThickness="2"/>
+            <Ellipse Canvas.Left="72" Canvas.Top="26" Width="44" Height="44" Stroke="#B4A0E7C2" StrokeThickness="3" Fill="#63304B3E"/>
+            <Ellipse Canvas.Left="72" Canvas.Top="83" Width="44" Height="44" Stroke="#B4E7BC98" StrokeThickness="3" Fill="#634C3D31"/>
+            <Ellipse x:Name="UpperPressFlash" Canvas.Left="70" Canvas.Top="24" Width="48" Height="48" Fill="#C9C8FFE1" Opacity="0" IsHitTestVisible="False"/>
+            <Ellipse x:Name="LowerPressFlash" Canvas.Left="70" Canvas.Top="81" Width="48" Height="48" Fill="#C9FFE1BD" Opacity="0" IsHitTestVisible="False"/>
+            <TextBlock Canvas.Left="85" Canvas.Top="34" Text="↑" Foreground="#E1FFE9" FontSize="20" FontWeight="Bold"/>
+            <TextBlock Canvas.Left="85" Canvas.Top="91" Text="↓" Foreground="#FFEBD4" FontSize="20" FontWeight="Bold"/>
+            <TextBlock x:Name="Countdown" Canvas.Left="234" Canvas.Top="51" FontSize="31" Foreground="#D4F3E3" FontWeight="Bold">
+              <TextBlock.Effect><DropShadowEffect Color="#172D25" BlurRadius="9" ShadowDepth="0" Opacity="0.8"/></TextBlock.Effect>
+            </TextBlock>
+            <Canvas x:Name="NoteLayer" Width="505" Height="150" IsHitTestVisible="False"/>
+            <Canvas x:Name="ImpactLayer" Width="505" Height="150" IsHitTestVisible="False"/>
+            <Border x:Name="ImpactBadge" Canvas.Left="161" Canvas.Top="41" Padding="10,4" Background="#BA1E2C30" CornerRadius="5" Opacity="0" IsHitTestVisible="False">
+              <StackPanel HorizontalAlignment="Center">
+                <TextBlock x:Name="ImpactGrade" Text="PERFECT" FontSize="28" FontWeight="Bold" Foreground="#D5FFEA" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="ImpactCombo" Text="COMBO 0" FontSize="12" FontWeight="SemiBold" Foreground="#E6F6EE" HorizontalAlignment="Center"/>
+              </StackPanel>
+            </Border>
+          </Canvas>
+        </Border>
+        <Grid Margin="0,10,0,0">
+          <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+          <Button x:Name="UpperButton" Content="上轨  D / J" Margin="0,0,5,0"/>
+          <Button x:Name="LowerButton" Content="下轨  F / K" Grid.Column="1" Margin="5,0,0,0"/>
+        </Grid>
+        <Border Background="#EAF4F8F5" Padding="8,5" CornerRadius="4" Margin="0,9,0,0" HorizontalAlignment="Left">
+          <TextBlock Text="MISS 超过 20% 则停止代码生成" Foreground="#4B6958" FontSize="11"/>
+        </Border>
+        <ProgressBar x:Name="SongProgress" Height="3" Minimum="0" Maximum="100" Foreground="#80B99D" Background="#E2EBE5" BorderThickness="0" Margin="0,12,0,0"/>
+      </StackPanel>
+      <ScrollViewer x:Name="QuizPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MaxHeight="650">
+        <StackPanel Margin="0,0,8,0">
+        <TextBlock x:Name="QuestionLabel" FontSize="11" Foreground="#647B6D" Margin="0,0,0,9"/>
+        <TextBlock x:Name="QuestionPrompt" FontSize="16" TextWrapping="Wrap" LineHeight="25" Margin="0,0,0,14"/>
+        <TextBlock x:Name="QuestionSources" FontSize="10" Foreground="#7B897F" TextWrapping="Wrap" Margin="0,0,0,10" Visibility="Collapsed"/>
+        <StackPanel x:Name="AnswerPanel"/>
+        <TextBlock x:Name="AnswerFeedback" FontSize="11" Foreground="#697F70" TextWrapping="Wrap" LineHeight="17" Margin="0,4,0,0"/>
+        <TextBlock x:Name="AnswerSources" FontSize="10" Foreground="#7B897F" TextWrapping="Wrap" Margin="0,5,0,0" Visibility="Collapsed"/>
+        </StackPanel>
+      </ScrollViewer>
+      <TextBlock x:Name="ConnectionHint" FontSize="11" Foreground="#B27452" TextWrapping="Wrap" Visibility="Collapsed" Margin="0,10,0,0"/>
+      <Button x:Name="CancelButton" Content="取消" HorizontalAlignment="Right" Padding="15,7" Margin="0,18,0,0"/>
+    </StackPanel>
+  </Border>
+</Window>
